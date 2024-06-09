@@ -1,0 +1,10 @@
+live checksum delta:
+-	Save File Controller does a save changes
+-	Children append a delta to the checksum
+-	Save File Controller then adds the delta to the current checksum controller (applyChecksumDelta)
+
+For children, their save changes will call the applyChecksumDelta
+
+RANDOM THOUGHT:
+-	Legality has an attach() and detach() method that add or remove listeners to the save file object it holds, which can be null
+-	That save file can be changed. The goal is one single legality object that doesn't really have to be rebuilt
