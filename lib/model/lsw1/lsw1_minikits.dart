@@ -116,7 +116,7 @@ class LSW1LevelMinikitsController extends TTChildController {
 
   void _minikitNumberCheck(int number) {
     if (number < 1 || number > 10) {
-      throw ArgumentError("Invalid number $number for minikit, should be 1-10");
+      throw RangeError("Invalid number $number for minikit, should be 1-10");
     }
   }
 

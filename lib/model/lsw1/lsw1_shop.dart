@@ -154,7 +154,7 @@ class LSW1ShopController extends TTChildController {
   }
 
   void _hintOffsetCheck(int offset) {
-    if (offset < 1 || offset > 8) throw ArgumentError('Invalid hint number: $offset');
+    if (offset < 1 || offset > 8) throw RangeError('Invalid hint number: $offset');
   }
 
   late final TTBitmapController hintsPurchasedController;

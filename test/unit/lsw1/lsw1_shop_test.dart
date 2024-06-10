@@ -33,15 +33,15 @@ void main() async {
   });
 
   test('Correct behavior - invalid hint purchasing values', () {
-    expect(() => controller.hintPurchased(-1), throwsA(isArgumentError));
-    expect(() => controller.hintPurchased(0), throwsA(isArgumentError));
-    expect(() => controller.hintPurchased(9), throwsA(isArgumentError));
-    expect(() => controller.purchaseHint(-1), throwsA(isArgumentError));
-    expect(() => controller.purchaseHint(0), throwsA(isArgumentError));
-    expect(() => controller.purchaseHint(9), throwsA(isArgumentError));
-    expect(() => controller.unpurchaseHint(-1), throwsA(isArgumentError));
-    expect(() => controller.unpurchaseHint(0), throwsA(isArgumentError));
-    expect(() => controller.unpurchaseHint(9), throwsA(isArgumentError));
+    expect(() => controller.hintPurchased(-1), throwsA(isRangeError));
+    expect(() => controller.hintPurchased(0), throwsA(isRangeError));
+    expect(() => controller.hintPurchased(9), throwsA(isRangeError));
+    expect(() => controller.purchaseHint(-1), throwsA(isRangeError));
+    expect(() => controller.purchaseHint(0), throwsA(isRangeError));
+    expect(() => controller.purchaseHint(9), throwsA(isRangeError));
+    expect(() => controller.unpurchaseHint(-1), throwsA(isRangeError));
+    expect(() => controller.unpurchaseHint(0), throwsA(isRangeError));
+    expect(() => controller.unpurchaseHint(9), throwsA(isRangeError));
   });
 
   test('Correct behavior - buying characters', () {
