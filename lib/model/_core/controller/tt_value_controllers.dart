@@ -182,13 +182,13 @@ class TTBitmapController extends TTValueController<Uint8List> {
       saveFile.writeRange(offset, offset + byteLength, newValue);
 
   bool bit(int bitOffset) {
-    _assertValidOffset(bitOffset);
+    _ensureValidOffset(bitOffset);
     var (byteOffs, bitOffs) = (bitOffset ~/ 8, bitOffset % 8);
     return (value[byteOffs] >> bitOffs) & 1 == 1;
   }
 
   void setBit(int bitOffset) {
-    _assertValidOffset(bitOffset);
+    _ensureValidOffset(bitOffset);
     var (byteOffs, bitOffs) = (bitOffset ~/ 8, bitOffset % 8);
     var oldValue = value[byteOffs];
     var newValue = oldValue | (1 << bitOffs);
@@ -199,7 +199,7 @@ class TTBitmapController extends TTValueController<Uint8List> {
   }
 
   void unsetBit(int bitOffset) {
-    _assertValidOffset(bitOffset);
+    _ensureValidOffset(bitOffset);
     var (byteOffs, bitOffs) = (bitOffset ~/ 8, bitOffset % 8);
     var oldValue = value[byteOffs];
     var newValue = oldValue & (~(1 << bitOffs) & 0xFF);
@@ -226,8 +226,8 @@ class TTBitmapController extends TTValueController<Uint8List> {
     throw Exception('Shouldn\'t get here. bitsToTestLeft = $bitsToTestLeft');
   }
 
-  void _assertValidOffset(int bitOffset) {
-    assert(bitOffset >= 0 && bitOffset < bitLength, 'Invalid offset for bitmap: $bitOffset');
+  void _ensureValidOffset(int bitOffset) {
+    if (bitOffset < 0 || bitOffset >= bitLength) throw 'Invalid offset for bitmap: $bitOffset';
   }
 
   /// The number of bits in the bitmap

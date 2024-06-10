@@ -91,7 +91,7 @@ void main() async {
 
   test('Correct behavior for invalid values', () {
     var battleOverCoruscant = controller.battleOverCoruscant;
-    expect(() => battleOverCoruscant.collectMinikit(0), throwsA(isA<AssertionError>()));
-    expect(() => battleOverCoruscant.collectMinikit(11), throwsA(isA<AssertionError>()));
+    expect(() => battleOverCoruscant.collectMinikit(0), throwsA(isArgumentError));
+    expect(() => battleOverCoruscant.collectMinikit(11), throwsA(isArgumentError));
   });
 }

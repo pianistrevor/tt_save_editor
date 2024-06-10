@@ -44,7 +44,7 @@ class LSW1MinikitsController extends TTChildController {
 
 class LSW1LevelMinikitsController extends TTChildController {
   LSW1LevelMinikitsController({required super.parent, required List<(int, int)> sections}) {
-    assert(_totals10(sections), 'Total number of minikit bits don\'t add to 10');
+    if (!_totals10(sections)) throw ArgumentError('Total number of minikit bits don\'t add to 10');
     _initializeChildren(sectionData: sections);
   }
 
@@ -69,25 +69,24 @@ class LSW1LevelMinikitsController extends TTChildController {
   /// The controller for the minikit section in the level. 1-indexed.
   TTBitmapController section(int index) {
     index = index - 1;
-    assert(index >= 0 && index < _sections.length, 'Invalid index $index for section');
     return _sections[index];
   }
 
   /// Whether the given minikit has been collected in the level. Range: 1-10.
   bool minikitCollected(int number) {
-    _assertValidMinikitNumber(number);
+    _minikitNumberCheck(number);
     var (section, bit) = _bitForMinikit(number);
     return _sections[section].bit(bit);
   }
 
   void collectMinikit(int number) {
-    _assertValidMinikitNumber(number);
+    _minikitNumberCheck(number);
     var (section, bit) = _bitForMinikit(number);
     _sections[section].setBit(bit);
   }
 
   void uncollectMinikit(int number) {
-    _assertValidMinikitNumber(number);
+    _minikitNumberCheck(number);
     var (section, bit) = _bitForMinikit(number);
     _sections[section].unsetBit(bit);
   }
@@ -115,8 +114,10 @@ class LSW1LevelMinikitsController extends TTChildController {
     return (index, bit);
   }
 
-  void _assertValidMinikitNumber(int number) {
-    assert(number >= 1 && number <= 10, "Invalid number $number for minikit, should be 1-10");
+  void _minikitNumberCheck(int number) {
+    if (number < 1 || number > 10) {
+      throw ArgumentError("Invalid number $number for minikit, should be 1-10");
+    }
   }
 
   final List<TTBitmapController> _sections = [];

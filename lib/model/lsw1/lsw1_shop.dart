@@ -30,17 +30,17 @@ class LSW1ShopController extends TTChildController {
   /// There are only 8 purchaseable hints so
   /// valid values are in the range 1-8. The rest should answer 0.
   bool hintPurchased(int whichHint) {
-    _assertValidHintOffset(whichHint);
+    _hintOffsetCheck(whichHint);
     return hintsPurchasedController.bit(whichHint + 4);
   }
 
   void purchaseHint(int whichHint) {
-    _assertValidHintOffset(whichHint);
+    _hintOffsetCheck(whichHint);
     hintsPurchasedController.setBit(whichHint + 4);
   }
 
   void unpurchaseHint(int whichHint) {
-    _assertValidHintOffset(whichHint);
+    _hintOffsetCheck(whichHint);
     hintsPurchasedController.unsetBit(whichHint + 4);
   }
 
@@ -138,23 +138,23 @@ class LSW1ShopController extends TTChildController {
   // Private API
   int _getCharacterPurchasedBitIfExisting(String key) {
     if (!kCharacterPurchasedBits.containsKey(key)) {
-      throw Exception('No shop character called $key!');
+      throw ArgumentError('No shop character called $key!');
     }
     return kCharacterPurchasedBits[key]!;
   }
 
   int _getExtrasBitIfExisting(String key) {
-    if (!kExtrasBits.containsKey(key)) throw Exception('No shop extra called $key!');
+    if (!kExtrasBits.containsKey(key)) throw ArgumentError('No shop extra called $key!');
     return kExtrasBits[key]!;
   }
 
   int _getCharacterUnlockedBitIfExisting(String key) {
-    if (!kCharacterUnlockedBits.containsKey(key)) throw Exception('No character called $key!');
+    if (!kCharacterUnlockedBits.containsKey(key)) throw ArgumentError('No character called $key!');
     return kCharacterUnlockedBits[key]!;
   }
 
-  void _assertValidHintOffset(int offset) {
-    assert(offset > 0 && offset < 9, 'Invalid hint number: $offset');
+  void _hintOffsetCheck(int offset) {
+    if (offset < 1 || offset > 8) throw ArgumentError('Invalid hint number: $offset');
   }
 
   late final TTBitmapController hintsPurchasedController;

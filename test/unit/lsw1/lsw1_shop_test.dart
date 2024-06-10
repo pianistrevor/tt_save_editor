@@ -33,15 +33,15 @@ void main() async {
   });
 
   test('Correct behavior - invalid hint purchasing values', () {
-    expect(() => controller.hintPurchased(-1), throwsA(isA<AssertionError>()));
-    expect(() => controller.hintPurchased(0), throwsA(isA<AssertionError>()));
-    expect(() => controller.hintPurchased(9), throwsA(isA<AssertionError>()));
-    expect(() => controller.purchaseHint(-1), throwsA(isA<AssertionError>()));
-    expect(() => controller.purchaseHint(0), throwsA(isA<AssertionError>()));
-    expect(() => controller.purchaseHint(9), throwsA(isA<AssertionError>()));
-    expect(() => controller.unpurchaseHint(-1), throwsA(isA<AssertionError>()));
-    expect(() => controller.unpurchaseHint(0), throwsA(isA<AssertionError>()));
-    expect(() => controller.unpurchaseHint(9), throwsA(isA<AssertionError>()));
+    expect(() => controller.hintPurchased(-1), throwsA(isArgumentError));
+    expect(() => controller.hintPurchased(0), throwsA(isArgumentError));
+    expect(() => controller.hintPurchased(9), throwsA(isArgumentError));
+    expect(() => controller.purchaseHint(-1), throwsA(isArgumentError));
+    expect(() => controller.purchaseHint(0), throwsA(isArgumentError));
+    expect(() => controller.purchaseHint(9), throwsA(isArgumentError));
+    expect(() => controller.unpurchaseHint(-1), throwsA(isArgumentError));
+    expect(() => controller.unpurchaseHint(0), throwsA(isArgumentError));
+    expect(() => controller.unpurchaseHint(9), throwsA(isArgumentError));
   });
 
   test('Correct behavior - buying characters', () {
@@ -68,9 +68,9 @@ void main() async {
   });
 
   test('Correct behavior - invalid character purchasing values', () {
-    expect(() => controller.characterPurchased('notACharacter'), throwsA(isA<Exception>()));
-    expect(() => controller.purchaseCharacter('notACharacter'), throwsA(isA<Exception>()));
-    expect(() => controller.unpurchaseCharacter('notACharacter'), throwsA(isA<Exception>()));
+    expect(() => controller.characterPurchased('notACharacter'), throwsA(isArgumentError));
+    expect(() => controller.purchaseCharacter('notACharacter'), throwsA(isArgumentError));
+    expect(() => controller.unpurchaseCharacter('notACharacter'), throwsA(isArgumentError));
   });
 
   test('Correct behavior - buying extras', () {
@@ -97,9 +97,9 @@ void main() async {
   });
 
   test('Correct behavior - invalid extra purchasing values', () {
-    expect(() => controller.extraPurchased('notAnExtra'), throwsA(isA<Exception>()));
-    expect(() => controller.purchaseExtra('notAnExtra'), throwsA(isA<Exception>()));
-    expect(() => controller.unpurchaseExtra('notAnExtra'), throwsA(isA<Exception>()));
+    expect(() => controller.extraPurchased('notAnExtra'), throwsA(isArgumentError));
+    expect(() => controller.purchaseExtra('notAnExtra'), throwsA(isArgumentError));
+    expect(() => controller.unpurchaseExtra('notAnExtra'), throwsA(isArgumentError));
   });
 
   test('Correct behavior - unlocking characters', () {
@@ -125,9 +125,9 @@ void main() async {
   });
 
   test('Correct behavior - invalid character unlocking values', () {
-    expect(() => controller.characterUnlocked('notACharacter'), throwsA(isA<Exception>()));
-    expect(() => controller.unlockCharacter('notACharacter'), throwsA(isA<Exception>()));
-    expect(() => controller.lockCharacter('notACharacter'), throwsA(isA<Exception>()));
+    expect(() => controller.characterUnlocked('notACharacter'), throwsA(isArgumentError));
+    expect(() => controller.unlockCharacter('notACharacter'), throwsA(isArgumentError));
+    expect(() => controller.lockCharacter('notACharacter'), throwsA(isArgumentError));
   });
 
   test('Correct behavior - unlocking extras', () {
@@ -154,8 +154,8 @@ void main() async {
   });
 
   test('Correct behavior - invalid extra purchasing values', () {
-    expect(() => controller.extraUnlocked('notAnExtra'), throwsA(isA<Exception>()));
-    expect(() => controller.unlockExtra('notAnExtra'), throwsA(isA<Exception>()));
-    expect(() => controller.lockExtra('notAnExtra'), throwsA(isA<Exception>()));
+    expect(() => controller.extraUnlocked('notAnExtra'), throwsA(isArgumentError));
+    expect(() => controller.unlockExtra('notAnExtra'), throwsA(isArgumentError));
+    expect(() => controller.lockExtra('notAnExtra'), throwsA(isArgumentError));
   });
 }

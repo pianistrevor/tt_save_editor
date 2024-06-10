@@ -11,7 +11,7 @@ sealed class TTController {
     for (var c in children) {
       c.saveChanges();
     }
-    assert(!isDirty);
+    _ensureClean();
   }
 
   /// Cancels changes. Default is to have all children cancel their changes.
@@ -19,7 +19,7 @@ sealed class TTController {
     for (var c in children) {
       c.cancelChanges();
     }
-    assert(!isDirty);
+    _ensureClean();
   }
 
   /// Whether any of this controller's [children] are dirty
@@ -28,6 +28,10 @@ sealed class TTController {
       if (c.isDirty) return true;
     }
     return false;
+  }
+
+  void _ensureClean() {
+    if (isDirty) throw StateError('This controller is still dirty after saving changes');
   }
 
   bool get isDirty;
@@ -76,7 +80,7 @@ abstract class TTSaveFileController extends TTController {
     }
     recalculateChecksum();
     checksumController.saveChanges();
-    assert(!isDirty);
+    _ensureClean();
     saveFile.writeFileToDisk();
   }
 
@@ -94,9 +98,10 @@ abstract class TTSaveFileController extends TTController {
   /// [saveFile]. This will not include any new changes.
   void recalculateChecksum({bool expectMatch = false}) {
     var sum = calculateChecksum();
-    if (expectMatch) {
-      assert(sum == checksumController.value,
-          'Checksum mismatch: $sum versus ${checksumController.value}');
+    if (expectMatch && sum != checksumController.value) {
+      throw StateError('Checksum mismatch: '
+          '${sum.toRadixString(16)} versus '
+          '${checksumController.value.toRadixString(16)}');
     }
     setChecksum(sum);
   }
