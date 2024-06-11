@@ -8,7 +8,7 @@
 PRODUCT_NAME = tt_save_editor
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.ttSaveFileEditor
+PRODUCT_BUNDLE_IDENTIFIER = dev.appflair.ttSaveFileEditor
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2024 com.example. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2024 AppFlair.dev. All rights reserved.

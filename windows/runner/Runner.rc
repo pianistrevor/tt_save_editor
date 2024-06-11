@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "tt_save_editor" "\0"
+            VALUE "CompanyName", "appflair.dev" "\0"
+            VALUE "FileDescription", "A save editor for Travellers Tales LEGO Games" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "tt_save_editor" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2024 com.example. All rights reserved." "\0"
+            VALUE "InternalName", "TTSaveEditor" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2024 AppFlair.dev. All rights reserved." "\0"
             VALUE "OriginalFilename", "tt_save_editor.exe" "\0"
-            VALUE "ProductName", "tt_save_editor" "\0"
+            VALUE "ProductName", "TTSaveEditor" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

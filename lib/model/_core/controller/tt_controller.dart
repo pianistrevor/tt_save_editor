@@ -100,8 +100,8 @@ abstract class TTSaveFileController extends TTController {
     var sum = calculateChecksum();
     if (expectMatch && sum != checksumController.value) {
       throw StateError('Checksum mismatch: '
-          '${sum.toRadixString(16)} versus '
-          '${checksumController.value.toRadixString(16)}');
+          '0x${sum.toRadixString(16)} versus '
+          '0x${checksumController.value.toRadixString(16)}');
     }
     setChecksum(sum);
   }

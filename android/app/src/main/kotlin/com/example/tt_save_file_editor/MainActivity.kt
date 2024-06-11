@@ -1,4 +1,4 @@
-package com.example.tt_save_editor
+package dev.appflair.tt_save_editor
 
 import io.flutter.embedding.android.FlutterActivity
 
